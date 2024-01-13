@@ -2,7 +2,6 @@ import express from 'express'
 import expressAsyncHandler from 'express-async-handler'
 import Product from '../../../models/productModel.js'
 import { isAuth,isAdmin } from '../../../utils.js'
-import * as mongoose from 'mongoose';
 
 const productListApi = express.Router()
 
