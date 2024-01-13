@@ -1,7 +1,7 @@
 import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import Product from '../../../models/productModel.js';
-import { isAdmin, isAuth} from '../../../utils.js';
+import { isAdmin, isAuth,isSeller} from '../../../utils.js';
 
 const sellerProductRouter = express.Router()
 
@@ -22,7 +22,7 @@ sellerProductRouter.get(
 sellerProductRouter.get(
     '/product/:id',
     isAuth,
-    isAdmin,
+    isSeller,
     expressAsyncHandler( async(req,res) => {
         const userId = req.params.id; 
         const orderCount = await Product.countDocuments({ 'createdBy': userId });

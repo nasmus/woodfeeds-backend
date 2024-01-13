@@ -1,7 +1,7 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import Product from "../../models/productModel.js";
-import { isAdmin, isAuth } from "../../utils.js";
+import { isAdmin, isAuth, isSeller } from "../../utils.js";
 import path from "path";
 import multer from "multer";
 import { fileURLToPath } from 'url';
@@ -65,6 +65,7 @@ productCreateRouter.post(
       countInStock,
       rating,
       numReviews,
+      createdBy: req.user._id,
       multipleImage,
       hight,
       width,
@@ -83,18 +84,18 @@ productCreateRouter.post(
   })
 );
 
-// productCreateRouter.get(
-//   "/:id",
-//   isAuth,
-//   expressAsyncHandler(async (req, res) => {
-//     const data = await Product.find({ createdBy: req.user._id });
-//     if (data) {
-//       res.send(data);
-//     } else {
-//       res.status(404).send({ message: "Product Not Found" });
-//     }
-//   })
-// );
+productCreateRouter.get(
+  "/:id",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const data = await Product.find({ createdBy: req.user._id });
+    if (data) {
+      res.send(data);
+    } else {
+      res.status(404).send({ message: "Product Not Found" });
+    }
+  })
+);
 
 // product update by id
 

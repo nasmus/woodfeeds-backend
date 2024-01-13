@@ -1,14 +1,14 @@
 import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import Product from '../../models/productModel.js';
-import { isAuth, isAdmin } from '../../utils.js';
+import { isAuth, isSeller } from '../../utils.js';
 
 const deleteProduct = express.Router();
 
 deleteProduct.delete(
     '/:id',
     isAuth,
-    isAdmin,
+    isSeller,
     expressAsyncHandler(async(req,res) => {
         const data = await Product.findById(req.params.id);
         if(data){
