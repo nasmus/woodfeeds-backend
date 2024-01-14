@@ -14,7 +14,7 @@ import adminDashboardApi from './routes/AdminRouter/AdminApi/adminDashboardApi.j
 import path from 'path';
 import { fileURLToPath } from 'url';
 import adminLogInRouter from './routes/AdminRouter/AdimnLogin/adminLogInRouter.js';
-import productListApi from './routes/AdminRouter/AdminApi/ProductListApi.js';
+import productListApi from './routes/AdminRouter/AdminApi/productListApi.js';
 import orderList from './routes/AdminRouter/AdminApi/orderList.js';
 import categoryApi from './routes/AdminRouter/Category/categoryApi.js';
 import randomProductApi from './routes/userRouter/randomProductApi.js';
@@ -25,13 +25,15 @@ import TopProductRouter from './routes/userRouter/ProductView/TopProductRouter.j
 import review from './routes/userRouter/ProductReview/review.js';
 import productDelevaryStatus from './routes/userRouter/ProductReview/productDelevaryStatus.js';
 import countInStock from './routes/userRouter/ProductView/countInStock.js';
+import cors from 'cors'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
 const app = express();
 dotenv.config();
+
+app.use(cors())
 
 
 //mongoose.set("strictQuery", false);
@@ -66,13 +68,12 @@ app.use('/api/order/status',sellerOrderRouter);//seller order status update
 app.use('/api/count',sellerProductRouter); //seller product count
 app.use('/api/seller/category', categorySellerApi) //send all category
 
-app.use(express.static(path.join(__dirname, 'uploads'))); //image access from server
-
-
+app.use('/images',express.static(path.join(__dirname, 'uploads/images'))); //image access from server
 // image show from clint
-app.use('/images', express.static('uploads/images'));
+//app.use('/images', express.static('uploads/images'));
 
 // Admin Router
+
 
 app.use('/api/admin', adminLogInRouter) //login router
 app.use('/api/admin/storelist', adminDashboardApi) // seller count from dashboard
