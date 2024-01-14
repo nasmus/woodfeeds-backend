@@ -14,7 +14,7 @@ import adminDashboardApi from './routes/AdminRouter/AdminApi/adminDashboardApi.j
 import path from 'path';
 import { fileURLToPath } from 'url';
 import adminLogInRouter from './routes/AdminRouter/AdimnLogin/adminLogInRouter.js';
-import productListApi from './routes/AdminRouter/AdminApi/ProductListApi.js';
+import productListApi from './routes/AdminRouter/AdminApi/productListApi.js';
 import orderList from './routes/AdminRouter/AdminApi/orderList.js';
 import categoryApi from './routes/AdminRouter/Category/categoryApi.js';
 import randomProductApi from './routes/userRouter/randomProductApi.js';
