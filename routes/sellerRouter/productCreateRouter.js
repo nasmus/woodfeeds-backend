@@ -13,11 +13,10 @@ const productCreateRouter = express.Router();
 
 //display image upload
 const storage = multer.diskStorage({
-  destination: "./uploads/images",
   filename: function (req, file, cb) {
     cb(
       null,
-      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      file.originalname
     );
   },
 });
@@ -32,7 +31,7 @@ const multipleUpload = multer({ storage: storage })
 productCreateRouter.post(
   "/create",
   //upload.single("image"),
-  multipleUpload.array('multipleImage', 5),
+  multipleUpload.array('multipleImage'),
   isAuth,
   expressAsyncHandler(async (req, res) => {
 
