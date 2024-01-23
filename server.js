@@ -1,31 +1,32 @@
+import cors from 'cors';
+import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import seedRouter from './routes/seedRoutes.js';
-import productRouter from './routes/productRouter.js';
-import userRouter from './routes/userRouter.js';
-import orderRouter from './routes/orderRouter.js';
-import sellerRouter from './routes/sellerRouter/sellerRouter.js'
-import productCreateRouter from './routes/sellerRouter/productCreateRouter.js';
-import deleteProduct from './routes/sellerRouter/deleteProduct.js';
-import sellerOrderRouter from './routes/sellerRouter/OrderRouter/sellerOrderRouter.js'
-import sellerProductRouter from './routes/sellerRouter/ProductRouter/sellerProductRouter.js';
-import adminDashboardApi from './routes/AdminRouter/AdminApi/adminDashboardApi.js'
 import path from 'path';
 import { fileURLToPath } from 'url';
 import adminLogInRouter from './routes/AdminRouter/AdimnLogin/adminLogInRouter.js';
-import productListApi from './routes/AdminRouter/AdminApi/productListApi.js';
+import adminDashboardApi from './routes/AdminRouter/AdminApi/adminDashboardApi.js';
 import orderList from './routes/AdminRouter/AdminApi/orderList.js';
+import productListApi from './routes/AdminRouter/AdminApi/productListApi.js';
 import categoryApi from './routes/AdminRouter/Category/categoryApi.js';
-import randomProductApi from './routes/userRouter/randomProductApi.js';
-import productRating from './routes/userRouter/productRating.js';
-import getCategoryRouter from './routes/userRouter/Category/category.js';
+import orderRouter from './routes/orderRouter.js';
+import productRouter from './routes/productRouter.js';
+import seedRouter from './routes/seedRoutes.js';
 import categorySellerApi from './routes/sellerRouter/Category/categorySellerApi.js';
-import TopProductRouter from './routes/userRouter/ProductView/TopProductRouter.js';
-import review from './routes/userRouter/ProductReview/review.js';
+import deleteOrder from './routes/sellerRouter/OrderRouter/deleteOrder.js';
+import sellerOrderRouter from './routes/sellerRouter/OrderRouter/sellerOrderRouter.js';
+import sellerProductRouter from './routes/sellerRouter/ProductRouter/sellerProductRouter.js';
+import deleteProduct from './routes/sellerRouter/deleteProduct.js';
+import productCreateRouter from './routes/sellerRouter/productCreateRouter.js';
+import sellerRouter from './routes/sellerRouter/sellerRouter.js';
+import userRouter from './routes/userRouter.js';
+import getCategoryRouter from './routes/userRouter/Category/category.js';
 import productDelevaryStatus from './routes/userRouter/ProductReview/productDelevaryStatus.js';
+import review from './routes/userRouter/ProductReview/review.js';
+import TopProductRouter from './routes/userRouter/ProductView/TopProductRouter.js';
 import countInStock from './routes/userRouter/ProductView/countInStock.js';
-import cors from 'cors'
+import productRating from './routes/userRouter/productRating.js';
+import randomProductApi from './routes/userRouter/randomProductApi.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -61,7 +62,8 @@ app.use('/api/edit', productCreateRouter);
 app.use('/app', productCreateRouter);
 // seller order api
 app.use('/api/order', sellerOrderRouter);
-app.use('/api/productdetails',sellerProductRouter);
+app.use('/api/productdetails', sellerProductRouter);
+app.use('/api/orderdelete', deleteOrder);
 
 app.use('/api/summary',sellerOrderRouter);// seller order summery
 app.use('/api/order/status',sellerOrderRouter);//seller order status update

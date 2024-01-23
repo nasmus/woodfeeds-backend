@@ -57,7 +57,7 @@ getCategoryRouter.get(
 getCategoryRouter.get(
     '/bookshelf',
     expressAsyncHandler( async(req,res) => {
-        const categoryProduct = await Product.find({"category":'653176b645798d1826089e07'})
+        const categoryProduct = await Product.find({"category":'65a2710c006dc1d348d149c6'})
         if(categoryProduct){
             res.status(200).send(categoryProduct)
         } else{
@@ -70,7 +70,7 @@ getCategoryRouter.get(
 getCategoryRouter.get(
     '/wall_cornar',
     expressAsyncHandler( async(req,res) => {
-        const categoryProduct = await Product.find({"category":'6531777c45798d1826089e29'})
+        const categoryProduct = await Product.find({"category":'65a29aa5c8907a4d2d758f4b'})
         if(categoryProduct){
             res.status(200).send(categoryProduct)
         } else{
@@ -83,7 +83,7 @@ getCategoryRouter.get(
 getCategoryRouter.get(
     '/bad_side_shelf',
     expressAsyncHandler( async(req,res) => {
-        const categoryProduct = await Product.find({"category":'653176ca45798d1826089e09'})
+        const categoryProduct = await Product.find({"category":'65a29aeec8907a4d2d758f53'})
         if(categoryProduct){
             res.status(200).send(categoryProduct)
         } else{

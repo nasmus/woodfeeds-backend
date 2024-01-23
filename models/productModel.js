@@ -11,7 +11,7 @@ const productSchema = new mongoose.Schema(
     description: { type: String, required: true },
     price: { type: Number, required: true },
     countInStock: { type: Number, required: true },
-    hight: { type: String, required: false },
+    height: { type: String, required: false },
     width: { type: String, required: false },
     thickness: { type: String, required: false },
     color: { type: String, required: false },
