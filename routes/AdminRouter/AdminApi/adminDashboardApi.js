@@ -1,10 +1,10 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
-import User from "../../../models/userModel.js";
+import * as mongoose from "mongoose";
 import Order from "../../../models/orderModel.js";
 import Product from "../../../models/productModel.js";
-import { isAuth, isAdmin } from "../../../utils.js";
-import * as mongoose from "mongoose";
+import User from "../../../models/userModel.js";
+import { isAdmin, isAuth } from "../../../utils.js";
 const ObjectId = mongoose.Types.ObjectId;
 
 const adminDashboardApi = express.Router();
@@ -74,12 +74,12 @@ adminDashboardApi.get(
   expressAsyncHandler( async(req,res) =>{
     const totalSelles = await Order.aggregate([
       {
-        $group:{
-          _id:null,
-          totalSelles:{ $sum:'$itemsPrice'}
-        }
-      }
-    ])
+        $group: {
+          _id: null,
+          totalSelles: { $sum: "$totalPrice" },
+        },
+      },
+    ]);
     if(totalSelles){
       res.json(totalSelles)
     } else {
